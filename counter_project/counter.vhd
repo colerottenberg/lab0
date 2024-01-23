@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 entity counter is
     port(
-        clk : in std_logic;
+        clk_in : in std_logic;
         reset : in std_logic;
         count : out std_logic_vector(3 downto 0);
 		  seg : out std_logic_vector(6 downto 0)
@@ -11,13 +11,28 @@ entity counter is
 end counter;
 architecture rtl of counter is
     signal count_int : std_logic_vector(3 downto 0);
+	 signal clk_count : std_logic_vector(25 downto 0);
+	 signal clk : std_logic;
 begin
+	 process(clk_in)
+	 begin
+		if rising_edge(clk_in) then
+			clk_count <= std_logic_vector(unsigned(clk_count) + 1);
+		end if;
+		-- stepping down 50 MHz clock to 1 Hz
+		if unsigned(clk_count) = 24999999 then
+			clk_count <= "00000000000000000000000000";
+			clk <= not clk;
+		end if;
+	 end process;
+	 
     process(clk, reset)
     begin
         if reset = '1' then
             count_int <= "0000";
-        elsif rising_edge(clk) then
+        elsif clk = '1' then
 				count_int <= std_logic_vector(unsigned(count_int) + 1);
+				clk <= not clk;
         end if;
     end process;
 	 
