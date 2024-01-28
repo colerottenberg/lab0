@@ -14,7 +14,7 @@ entity clock_div is
 end clock_div;
 
 architecture Behavioral of clock_div is
-    constant COUNTER_MAX : integer := 250000000; -- Half of 500,000,000 for 1 Hz
+    constant COUNTER_MAX : integer := 25000000; -- Half of 500,000,000 for 1 Hz
     signal counter : integer range 0 to COUNTER_MAX := 0;
     signal temp_clk : STD_LOGIC := '0';
 
