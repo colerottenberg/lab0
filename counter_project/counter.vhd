@@ -4,9 +4,9 @@ use ieee.numeric_std.all;
 
 entity counter is
     port(
-        clk_in : in std_logic;
+        clk : in std_logic;
         reset : in std_logic;
-        count : out std_logic_vector(3 downto 0);
+        count : out std_logic_vector(3 downto 0)
     );
 end counter;
 
@@ -15,11 +15,11 @@ architecture rtl of counter is
 
 begin
 
-	process(clk_in, reset)
+	process(clk, reset)
 		begin
 			if reset = '1' then
 				count_r <= 0;
-			elsif rising_edge(clk_in) then
+			elsif rising_edge(clk) then
 				count_r <= count_r + 1;
 			end if;
 	end process;

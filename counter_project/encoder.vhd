@@ -1,14 +1,14 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity seven_segment_encoder is
+entity encoder is
     port(
         number_in : in std_logic_vector(3 downto 0);
         number_out : out std_logic_vector(6 downto 0)
     );
-end seven_segment_encoder;
+end encoder;
 
-architecture rtl of seven_segment_encoder is
+architecture rtl of encoder is
 begin
 	number_out <= "1000000" when number_in = "0000" else
 				  "1111001" when number_in = "0001" else

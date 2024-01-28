@@ -1,0 +1,98 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+-- This circuit is the top level of the design.
+-- We will combine the clock_div, counter, encoder, and d_ff modules
+-- to create a circuit that counts from 0 to 9 and displays the result
+
+entity top_level is
+    port(
+        clk : in std_logic;
+        reset : in std_logic;
+        led : out std_logic_vector(6 downto 0)
+    );
+end entity top_level;
+
+architecture rtl of top_level is
+    -- We will use the clock divider to create a 1 Hz clock
+    signal clk_1hz : std_logic;
+    -- We will use the counter to count from 0 to 9
+    signal count : unsigned(3 downto 0);
+    -- We will use the encoder to convert the count to a 7-segment display
+    signal encoded : std_logic_vector(6 downto 0);
+    -- We will use the d_ff to hold the value of the count
+    signal d_ff_out : std_logic_vector(3 downto 0);
+
+    component clock_div is
+        port(
+            clk : in std_logic;
+            reset : in std_logic;
+            clk_out : out std_logic
+        );
+    end component clock_div;
+
+    component counter is
+        port(
+            clk : in std_logic;
+            reset : in std_logic;
+            count : out unsigned(3 downto 0)
+        );
+    end component counter;
+
+    component encoder is
+        port(
+            number_in : in unsigned(3 downto 0);
+            number_out : out std_logic_vector(6 downto 0)
+        );
+    end component encoder;
+
+    component d_ff is
+        port(
+            clk : in std_logic;
+            reset : in std_logic;
+            d : in std_logic_vector(3 downto 0);
+            q : out std_logic_vector(3 downto 0)
+        );
+    end component d_ff;
+
+begin
+
+    -- Instantiate the clock divider
+    clock_div_inst : clock_div
+        port map(
+            clk => clk,
+            reset => reset,
+            clk_out => clk_1hz
+        );
+
+    -- Instantiate the counter
+    counter_inst : counter
+        port map(
+            clk => clk_1hz,
+            reset => reset,
+            count => count
+        );
+
+    -- Instantiate the encoder
+    encoder_inst : encoder
+        port map(
+            number_in => count,
+            number_out => encoded
+        );
+
+    -- Instantiate the d_ff
+    d_ff_inst : d_ff
+        port map(
+            clk => clk_1hz,
+            reset => reset,
+            d => count,
+            q => d_ff_out
+        );
+
+    -- Connect the output of the d_ff to the led output
+    led <= encoded;
+
+end architecture rtl;
+
+
