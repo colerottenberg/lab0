@@ -3,34 +3,28 @@ use ieee.std_logic_1164.all;
 
 entity seven_segment_encoder is
     port(
-        bin : in std_logic_vector(3 downto 0);
-        seg : out std_logic_vector(6 downto 0)
+        number_in : in std_logic_vector(3 downto 0);
+        number_out : out std_logic_vector(6 downto 0)
     );
 end seven_segment_encoder;
 
 architecture rtl of seven_segment_encoder is
 begin
-    process(bin)
-    begin
-        case bin is
-            when "0000" => seg <= "1000000"; -- 0
-            when "0001" => seg <= "1111001"; -- 1
-			when "0010" => seg <= "0100100"; -- 2
-			when "0011" => seg <= "0110000"; -- 3
-			when "0100" => seg <= "0011001"; -- 4
-			when "0101" => seg <= "0010010"; -- 5
-			when "0110" => seg <= "0000010"; -- 6
-			when "0111" => seg <= "1111000"; -- 7
-			when "1000" => seg <= "0000000"; -- 8
-			when "1001" => seg <= "0010000"; -- 9
-			when "1010" => seg <= "0001000"; -- A
-			when "1011" => seg <= "0000011"; -- B
-			when "1100" => seg <= "1000110"; -- C
-			when "1101" => seg <= "0100001"; -- D
-			when "1110" => seg <= "0000110"; -- E
-			when "1111" => seg <= "0001110"; -- F
-            -- Add the rest of the binary to seven-segment mappings here
-            when others => seg <= "1111111"; -- Error condition
-        end case;
-    end process;
+	number_out <= "1000000" when number_in = "0000" else
+				  "1111001" when number_in = "0001" else
+				  "0100100" when number_in = "0010" else
+				  "0110000" when number_in = "0011" else
+				  "0011001" when number_in = "0100" else
+				  "0010010" when number_in = "0101" else
+				  "0010010" when number_in = "0110" else
+				  "1111000" when number_in = "0111" else
+				  "0000000" when number_in = "1000" else
+				  "0010000" when number_in = "1001" else
+				  "0001000" when number_in = "1010" else
+				  "0000011" when number_in = "1011" else
+				  "1000110" when number_in = "1100" else
+				  "0100001" when number_in = "1101" else
+				  "0000110" when number_in = "1110" else
+				  "0001110" when number_in = "1111" else
+				  "0000000";
 end rtl;
