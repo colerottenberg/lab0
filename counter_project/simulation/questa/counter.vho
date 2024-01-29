@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition"
 
--- DATE "01/28/2024 18:41:03"
+-- DATE "01/28/2024 21:11:49"
 
 -- 
 -- Device: Altera 10M50DAF484C6GES Package FBGA484
@@ -1800,11 +1800,12 @@ PORT MAP (
 -- Location: LCCOMB_X67_Y53_N24
 \encoder_inst|number_out[4]~4\ : fiftyfivenm_lcell_comb
 -- Equation(s):
--- \encoder_inst|number_out[4]~4_combout\ = (\counter_inst|count_r\(2) & (((!\counter_inst|count_r\(3))))) # (!\counter_inst|count_r\(2) & (\counter_inst|count_r\(0) & ((!\counter_inst|count_r\(3)) # (!\counter_inst|count_r\(1)))))
+-- \encoder_inst|number_out[4]~4_combout\ = (\counter_inst|count_r\(1) & (\counter_inst|count_r\(0) & (!\counter_inst|count_r\(3)))) # (!\counter_inst|count_r\(1) & ((\counter_inst|count_r\(2) & ((!\counter_inst|count_r\(3)))) # (!\counter_inst|count_r\(2) & 
+-- (\counter_inst|count_r\(0)))))
 
 -- pragma translate_off
 GENERIC MAP (
-	lut_mask => "0000111101001100",
+	lut_mask => "0000110101001100",
 	sum_lutc_input => "datac")
 -- pragma translate_on
 PORT MAP (

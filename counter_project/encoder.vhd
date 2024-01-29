@@ -16,7 +16,7 @@ begin
 				  "0110000" when number_in = "0011" else
 				  "0011001" when number_in = "0100" else
 				  "0010010" when number_in = "0101" else
-				  "0010010" when number_in = "0110" else
+				  "0000010" when number_in = "0110" else
 				  "1111000" when number_in = "0111" else
 				  "0000000" when number_in = "1000" else
 				  "0010000" when number_in = "1001" else
