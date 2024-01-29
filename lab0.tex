@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{float}
 
 \title{EEL 4712C - Digital Design: Lab Report 0}
 \author{Cole Rottenberg \\ 11062528}
@@ -11,12 +12,12 @@
 
 \maketitle
 
-\section*{Prelab Report}
+\section*{Report}
 
-\subsection*{Prelab Questions}
+\subsection*{Questions}
 % Insert prelab questions and answers here
 
-\subsection*{Prelab Design and Implementation}
+\subsection*{Design and Implementation}
 % Detail the design and implementation of the prelab
 \subsubsection*{firstCircuit Implementation:}
 \begin{figure}[h]
@@ -27,15 +28,46 @@
 
 \subsubsection*{Counter Implementation:}
 The counter circuit is comprised of 4 components interconnected with a top level entity. The components are: an encoder, a clock divider, a counter, and d flip flops. The encoder takes in the 4 bit counter output and outputs a 7 bit value representing the current count in the 7 segment led. The clock divider takes in the 50MHz clock and outputs a 1Hz clock. The counter takes in the 1Hz clock and outputs a 4 bit value representing the current count. The d flip flops take in the 1Hz clock and the 4 bit counter output and output the 4 bit counter output to the encoder. The top level entity takes in the 50MHz clock and outputs the 4 bit counter output and the 7 bit encoder output. The top level entity also connects the 4 bit counter output to the d flip flops and the 1Hz clock to the counter and d flip flops. \\
-\textbf{Encoder:}
-\begin{figure}[h]
+\textbf{Encoder:} \\
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{encoder.png}
+  \includegraphics[width=0.6\textwidth]{encoder.png}
   \caption{Encoder Implementation}
+\end{figure}
+\textbf{Clock Divider:} \\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{clock_div.png}
+  \caption{Clock Divider Implementation}
+\end{figure}
+\textbf{Counter:} \\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{counter.png}
+  \caption{Counter Implementation}
+\end{figure}
+\textbf{D Flip Flop:} \\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{dff.png}
+  \caption{D Flip Flop Implementation}
+\end{figure}
+\textbf{Top Level Entity:} \\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{cc1.png}
+  \caption{Top Level Entity Implementation 1}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{cc2.png}
+  \caption{Top Level Entity Implementation 2}
+\end{figure}
 \subsection*{Reflection}
 % Reflect on the learning and challenges faced during the prelab
+The process of teaching myself VHDL has been time-consuming and feels directionless at time, however I managed to find Stitt's GitHub which contains a VHDL tutorial that has been very helpful. Looking back through slides has been helpful as well. I was entirely able to implement the counter. Looking back, I spent about two hours longer than I needed to in order to have a working circuit. In that time, I learned the process of architecture and entity creation, as well as the process of connecting components together. I also learned how to use the 7 segment led. I did not have any issues with the prelab.
 
-\subsection*{Prelab Homework}
+\subsection*{Homework}
 % Show all work for the Prelab Homework here
 \begin{enumerate}
   \item \textbf{Problem 1:} A\_123, A123\_, c1\_\_c2, and1
@@ -80,24 +112,6 @@ The counter circuit is comprised of 4 components interconnected with a top level
     \hline
   \end{tabular}
 \end{enumerate}
-
-\section*{Postlab Report}
-
-\subsection*{Problem Statement}
-% Provide a short description of the lab’s goals, system, inputs, outputs, and function
-% Section should be 1-2 paragraphs
-
-\subsection*{Design}
-% Describe the design decisions, components, signals, and algorithms used
-
-\subsection*{Implementation}
-% Describe the implementation process, time required, and any relevant code or pictures
-
-\subsection*{Testing}
-% Explain how the design was tested and the outcomes
-
-\subsection*{Conclusions}
-% Summarize the work, successes, problems encountered, and future improvements
 
 \section*{Appendix}
 % Include all postlab code, screenshots, pictures, and simulations here
