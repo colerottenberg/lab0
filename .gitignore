@@ -2,3 +2,8 @@ db
 incremental_db
 output_files
 simulation/questa
+lab0.aux
+lab0.fdb_latexmk
+lab0.fls
+lab0.log
+lab0.synctex.gz
